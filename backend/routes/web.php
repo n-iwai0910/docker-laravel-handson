@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +12,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'App\Http\Controllers\ShopController@index');
+Route::get('/cart_item', 'App\Http\Controllers\ShopController@cart_item')->middleware('auth');
+Route::post('/cart_item', 'App\Http\Controllers\ShopController@addCart_item');
+
+
+Auth::routes();
