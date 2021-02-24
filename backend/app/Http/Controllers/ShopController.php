@@ -26,7 +26,7 @@ class ShopController extends Controller
 
     public function addCart_item(Request $request)
     {
-    	$user_id = Auth::user()->id;
+    	$user_id = Auth::id();
     	$item_id = $request->item_id;
 
     	$cart_add_info = Cart_item::firstOrCreate(['item_id' => $item_id,'user_id' => $user_id]);
