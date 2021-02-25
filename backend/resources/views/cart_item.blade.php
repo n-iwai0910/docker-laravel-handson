@@ -8,14 +8,22 @@
            {{ Auth::user()->name }}さんのカートの中身</h1>
 
            <div class="">
-              <p class="text-center">{{ $message }}</p><br>
+              <p class="text-center">{{ $message ?? '' }}</p><br>
               <div class="d-flex flex-row flex-wrap">
 
                     @foreach($cart_items as $cart_item)
-                        <div class = "cart_item_box">
-                          <p>ユーザーID:{{$cart_item->user_id}}</p>
-                          <p>ストックID:{{$cart_item->item_id}}</p>
-                        </div>
+                      <div class="cart_item_box">
+                        {{$cart_item->item->name}} <br>
+                        {{ number_format($cart_item->item->price)}}円 <br>
+                          <img src = "/image/{{$cart_item->item->image}}" alt="" class="incart" >
+                          <br>
+
+                          <form action="/cartdelete" method="post">
+                            @csrf
+                            <input type = "hidden" name = "item_id" value = "{{ $cart_item->item->id }}">
+                            <input type = "submit" value = "カートから削除する" >
+                          </form>
+                      </div>
                     @endforeach
 
                </div>

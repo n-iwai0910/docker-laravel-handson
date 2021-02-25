@@ -15,33 +15,38 @@ class ShopController extends Controller
     public function index()
     {   
     	$items = Item::Paginate(6);
-    	return view('shop',compact('items')); //追記変更
+    	return view('shop',compact('items'));
     }
 
-    public function cart_item() //追加
+    public function cart_item(Cart_item $cart_item)
     {   
-    	$cart_items = Cart_item::all();
-    	return view('cart_items',compact('cart_items')); //追記変更
+    	$cart_items = $cart_item->showCart();
+    	return view('cart_item',compact('cart_items'));
     }
 
-    public function addCart_item(Request $request)
+    public function addCart_item(Request $request, Cart_item $cart_item)
     {
-    	$user_id = Auth::id();
+    	 //カートに追加の処理
     	$item_id = $request->item_id;
+    	$message = $cart_item->addCart_item($item_id);
 
-    	$cart_add_info = Cart_item::firstOrCreate(['item_id' => $item_id,'user_id' => $user_id]);
-
-    	if($cart_add_info->wasRecentlyCreated){
-            $message = 'カートに追加しました';
-        }
-        else{
-        	$message = 'カートに登録済みです';
-        }
-
-        $cart_items = Cart_item::where('user_id',$user_id)->get();
+        //追加後の情報を取得
+        $cart_items = $cart_item->showCart();
 
         return view('cart_item',compact('cart_items', 'message'));
     	
+    }
+
+    public function deleteCart(Request $request,Cart_item $cart_item)
+    {
+        //カートに追加の処理
+        $item_id = $request ->item_id;
+        $message = $cart->deleteCart($item_id);
+        
+        //追加後の情報を取得
+        $cart_items = $cart_item->showCart();
+       
+        return view('cart_item' ,compact('cart_items', 'message'));
     }
 
 }
