@@ -18,10 +18,16 @@ class ShopController extends Controller
     	return view('shop',compact('items'));
     }
 
+    public function show(Item $item)
+    {
+    	return view('show', ['item' => $item]);
+    }
+
+
     public function cart_item(Cart_item $cart_item)
     {   
-    	$cart_items = $cart_item->showCart();
-    	return view('cart_item',compact('cart_items'));
+    	$data = $cart_item->showCart();
+    	return view('cart_item',$data);
     }
 
     public function addCart_item(Request $request, Cart_item $cart_item)
@@ -31,22 +37,28 @@ class ShopController extends Controller
     	$message = $cart_item->addCart_item($item_id);
 
         //追加後の情報を取得
-        $cart_items = $cart_item->showCart();
+        $data = $cart_item->showCart();
 
-        return view('cart_item',compact('cart_items', 'message'));
-    	
+        return view('cart_item',$data)->with('message' ,$message);
     }
+
 
     public function deleteCart(Request $request,Cart_item $cart_item)
     {
-        //カートに追加の処理
+        //カートに削除の処理
         $item_id = $request ->item_id;
-        $message = $cart->deleteCart($item_id);
+        $message = $cart_item->deleteCart($item_id);
         
         //追加後の情報を取得
-        $cart_items = $cart_item->showCart();
+        $data = $cart_item->showCart();
        
-        return view('cart_item' ,compact('cart_items', 'message'));
+        return view('cart_item' ,$data)->with('message' ,$message);
+    }
+
+    public function thanks(Cart_item $cart_item)
+    {   
+    	$thanks_info = $cart_item->thanksCart();
+    	return view('thanks');
     }
 
 }

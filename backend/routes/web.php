@@ -14,8 +14,11 @@
 */
 
 Route::get('/', 'App\Http\Controllers\ShopController@index');
+Route::get('/{item}','App\Http\Controllers\ShopController@show');
 Route::get('/cart_item', 'App\Http\Controllers\ShopController@cart_item')->middleware('auth');
 Route::post('/cart_item', 'App\Http\Controllers\ShopController@addCart_item');
 Route::post('/cartdelete', 'App\Http\Controllers\ShopController@deleteCart');
+Route::post('/thanks', 'App\Http\Controllers\ShopController@thanks');
+
 
 Auth::routes();

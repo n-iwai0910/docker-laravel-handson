@@ -11,13 +11,23 @@ class Cart_item extends Model
     use HasFactory;
     
     protected $fillable = [
-      'item_id', 'user_id',
+      'item_id', 'user_id','quantity',
     ];
 
     public function showCart()
     {
         $user_id = Auth::id();
-        return $this->where('user_id',$user_id)->get();
+        $data['cart_items'] = $this->where('user_id', $user_id)->get();
+
+        $data['count'] = 0;
+        $data['sum'] = 0;
+
+        foreach($data['cart_items'] as $cart_item){
+        	$data['count']++;
+        	$data['sum'] += $cart_item->item->price;
+        }
+
+        return $data;
     }
 
     public function item()
@@ -53,5 +63,14 @@ class Cart_item extends Model
         }
 
         return $message;
+    }
+
+    public function thanksCart()
+    {
+        $user_id = Auth::id();
+        $thanks_items=$this->where('user_id', $user_id)->get();
+        $this->where('user_id', $user_id)->delete();
+
+        return $thanks_items;
     }
 }

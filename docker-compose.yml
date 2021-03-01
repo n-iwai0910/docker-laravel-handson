@@ -31,9 +31,26 @@ services:
     volumes:
       - pma-session-store:/sessions
 
+  # Node.js
+  node:
+    image: node:lts-alpine
+    working_dir: /opt/laravel                # ワーキングディレクトリをLaravelのルートディレクトリにします。
+    command: ["npm", "run", "watch-poll"]    # `docker-compose up -d`実行時のコマンドを`npm run watch-poll`にします。
+    volumes:
+      # npmのキャッシュファイル
+      - npm-cache:/root/.mpm        
+      # Laravelのソースファイル
+      - ../laravel:/opt/laravel
+
+
+
 
 volumes:
    # 追記
   pma-session-store:
 
   db-store:
+
+  # volumes:
+  npm-cache:
+    driver: local
