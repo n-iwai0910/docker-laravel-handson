@@ -15,7 +15,7 @@
                         <div class="cart_item_box">
                           {{$item->name}} <br>
                           {{$item->price}}円<br>
-                          <a href="/{{ $item->id }}">
+                          <a href="shop/{{ $item->id }}">
                             <img src="/image/{{$item->image}}" alt="" class="incart">
                           </a>
                           <br>
@@ -24,7 +24,7 @@
                           {{-- 追加 --}}
 
 
-                          <form action="cart_item" method="post">
+                          <form action="cartitem" method="post">
                             @csrf
                             <select name="quantity" class="form-control col-md-2 mr-1">
                                 <option selected>1</option>

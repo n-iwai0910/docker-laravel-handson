@@ -9,6 +9,7 @@
 
            <div class="card-body">
               <div class="cart_item_box">
+
                     {{$item->name}} <br>
                     {{$item->price}}円<br>
                     <img src="/image/{{$item->image}}" alt="" class="incart">
@@ -19,6 +20,13 @@
 
                       <form action="cart_item" method="post">
                         @csrf
+                            <select name="quantity" class="form-control col-md-2 mr-1">
+                                <option selected>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
                         <input type="hidden" name="item_id" value="{{ $item->id }}">
                         <input type="submit" value="カートに入れる">
                       </form>

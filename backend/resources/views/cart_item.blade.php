@@ -16,6 +16,7 @@
                       <div class="cart_item_box">
                         {{$cart_item->item->name}} <br>
                         {{ number_format($cart_item->item->price)}}円 <br>
+                        {{ number_format($cart_item->quantity)}}個 <br>
                           <img src = "/image/{{$cart_item->item->image}}" alt="" class="incart" >
                           <br>
 

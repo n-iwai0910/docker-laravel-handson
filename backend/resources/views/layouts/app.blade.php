@@ -66,13 +66,13 @@
                                     </form>
 
                                     {{--追加--}}
-                                    <a class="dropdown-item" href="{{ url('/mycart') }}">
+                                    <a class="dropdown-item" href="{{ url('/cartitem') }}">
                                         カートを見る
                                     </a>
                                 </div>
                             </li>
                             {{--追加--}}
-                            <a href="{{ url('/cart_item') }}" >
+                            <a href="{{ url('/cartitem') }}" >
                                 <img src="{{ asset('image/cart.png') }}" class="cart" >
                             </a>
                         @endguest
