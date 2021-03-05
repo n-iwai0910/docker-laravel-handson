@@ -33,21 +33,13 @@
                           <button type="submit" class="btn btn-primary ml-1">カートから削除</button>
                         </form>
 
-
-                          <!--
-                          <form action="/cartdelete" method="post">
-                            @csrf
-                            <input type = "hidden" name = "item_id" value = "{{ $cartitem->id }}">
-                            <input type = "submit" value = "カートから削除する" >
-                          </form>
-                          -->
                       </div>
                     @endforeach
 
                     <div class="text-center p-2">
                         <p style="font-size:1.2em; font-weight:bold;">小計:{{number_format($subtotal)}}円</p>
                     </div>
-                    <div>
+                    <div> 
                       <a class="btn btn-primary" href="/order" role="button">
                         レジに進む
                       </a>

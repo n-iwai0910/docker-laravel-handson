@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Order;
+use App\Models\OrderItem;
 use App\Models\CartItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;			
 
 class OrderController extends Controller
 {
+
     public function index()
     {
         $cartitems =  CartItem::select('cart_items.*', 'items.name', 'items.price',  'items.image')
@@ -28,11 +31,12 @@ class OrderController extends Controller
     public function store(Request $request)
     {   
 
-    	Order::create(
+    	if( $request->has('post')) {
+
+    		Order::create(
     		[
                 'user_id' => Auth::id(),
-                'item_id' => $request->post('item_id'),
-                'email' => $request->post('email'),
+                'email' => (Auth::user()->email),
                 'last_name' => $request->post('last_name'),
                 'first_name' => $request->post('first_name'),
                 'last_name_kana' => $request->post('last_name_kana'),
@@ -41,13 +45,17 @@ class OrderController extends Controller
                 'region' => $request->post('region'),
                 'address' => $request->post('address'),
                 'phonenumber' => $request->post('phonenumber'),
-                'quantity' => $request->post('quantity'),
             ]
-        );
+          );
+            
 
-    	if( $request->has('post')) {
+    		OrderItem::create(
+    		[
+                'user_id' => Auth::id(),
+                'item_id' => $cartitem->post('item_id'),
+            ]
+          );
 
-    		CartItem::where('user_id', Auth::id())->delete();
     		return view('order/complete');
     	}
     	$request->flash();

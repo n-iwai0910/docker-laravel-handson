@@ -101,18 +101,6 @@
             </div>
           </div>
 
-          <div class="form-row mb-1">
-            <div class="form-group col-md-6">
-              <label for="email">メールアドレス</label>
-              @if(Request::has('confirm'))
-                <p class="form-control-static">{{ old('email')}}</p>
-                <input id="email" type="hidden" name="email" value="{{ old( 'email' )}}">
-              @else
-                <input id="email" type="text" class="form-control" name="email" value="{{ old( 'email' )}}">
-              @endif
-            </div>
-          </div>
-
           <div class="form-row">
             <div class="col-md-6">
               @if(Request::has('confirm'))
@@ -128,7 +116,6 @@
       </div>
     </div>
   </div>
-  <input type="hidden" name="item_id" value="{{ $item->id }}">
   @foreach($cartitems as $cartitem)
     <div class="cart_item_box">
       {{$cartitem->name}} <br>
