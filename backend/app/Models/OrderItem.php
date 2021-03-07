@@ -16,4 +16,9 @@ class OrderItem extends Model
    {
        return $this->belongsTo('\App\Models\Item');
    }
+
+   public function CartItem()
+   {
+       return $this->belongsTo('\App\Models\CartItem');
+   }
 }

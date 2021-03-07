@@ -104,7 +104,7 @@
           <div class="form-row">
             <div class="col-md-6">
               @if(Request::has('confirm'))
-                <button type="submit" class="btn btn-primary" name="post">注文を確認する</button>
+                <button type="submit" class="btn btn-primary" name="post">注文を送信する</button>
                 <button type="submit" class="btn btn-default" name="back">修正する</button>
               @else
                 <button type="submit" class="btn btn-primary" name="confirm">入力内容を確認する</button>
