@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
-
+namespace App\Http\Controllers\Admin\Auth;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+
 
 class LoginController extends Controller
 {
@@ -26,21 +27,23 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = RouteServiceProvider::ADMIN_HOME;
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
+    public function showLoginForm()
+    {
+        return view('admin.auth.login');
+    }
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
     }
 
-    public function redirectPath()
-    {
-        return '/';
-        //例）return 'costs/index';
+    protected function guard(){
+        return Auth::guard('admin');
     }
 }

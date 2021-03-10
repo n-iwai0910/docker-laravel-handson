@@ -1,7 +1,7 @@
 
 <?php
 
-
+use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,8 +14,9 @@
 */
 
 Route::get('/', 'App\Http\Controllers\ShopController@index');
+Route::get('/home', 'App\Http\Controllers\HomeController@index');
 Route::get('/shop/{item}','App\Http\Controllers\ShopController@show');
-Route::get('/cart_item', 'App\Http\Controllers\ShopController@cart_item')->middleware('auth');
+Route::get('/cart_item', 'App\Http\Controllers\ShopController@cart_item');//->middleware('auth');
 Route::post('/cart_item', 'App\Http\Controllers\ShopController@addCart_item');
 Route::post('/shop/cart_item', 'App\Http\Controllers\ShopController@addCart_item');
 Route::post('/cartdelete', 'App\Http\Controllers\ShopController@deleteCart');
@@ -27,4 +28,11 @@ Route::put('/cartitem/{cartItem}', 'App\Http\Controllers\CartItemController@upda
 Route::get('/order', 'App\Http\Controllers\OrderController@index');
 Route::post('/order', 'App\Http\Controllers\OrderController@store');
 
+Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin.')->group(function(){
+    Auth::routes();
+
+    Route::get('/home', 'AdminHomeController@index')->name('admin_home');
+});
+
 Auth::routes();
+

@@ -59,21 +59,19 @@ class OrderController extends Controller
             $totalprice = 0;
               foreach($cartitems as $cartitem){
                 $totalprice += $cartitem->price * $cartitem->quantity;
-              };
+              }
      
             foreach($cartitems as $cartitem){
               $cartitems = [
                 'user_id' => $cartitem->user_id,
                 'item_id' => $cartitem->item_id,
                 'quantity' => $cartitem->quantity,
-                'total_price' =>$totalprice,
-             　 ];
-
+                'total_price' => $totalprice,
+                ];
 
     	      DB::table('order_items')
     	        ->where('user_id', $id)
     	        ->insert($cartitems);
-
     	    }
     	    
             CartItem::where('user_id', Auth::id())->delete();
