@@ -43,7 +43,7 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('admin.login') }}">{{ __('Login') }}</a>
                             </li>
-                            @if (Route::has('register'))
+                            @if (Route::has('admin.register'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('admin.register') }}">{{ __('Register') }}</a>
                                 </li>
@@ -71,10 +71,6 @@
                                     </a>
                                 </div>
                             </li>
-                            {{--追加--}}
-                            <a href="{{ url('/cartitem') }}" >
-                                <img src="{{ asset('image/cart.png') }}" class="cart" >
-                            </a>
                         @endguest
 
 

@@ -46,4 +46,12 @@ class LoginController extends Controller
     protected function guard(){
         return Auth::guard('admin');
     }
+     /**
+     * ログアウトしたときの画面遷移先
+     */
+    protected function loggedOut(\Illuminate\Http\Request $request)
+    {
+        return redirect('/admin/login');
+    }
+
 }

@@ -43,7 +43,7 @@
 
                       </div>
                     @endforeach
-                     <div class="text-center" style="width: 200px;margin: 20px auto;">
+                     <div class="text-center" style="width: 100px;margin: 20px auto;">
                     {{ $items->links()}} 
 
                  

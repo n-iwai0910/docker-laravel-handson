@@ -29,9 +29,13 @@ Route::get('/order', 'App\Http\Controllers\OrderController@index');
 Route::post('/order', 'App\Http\Controllers\OrderController@store');
 
 Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin.')->group(function(){
-    Auth::routes();
+
+    Auth::routes(['register' => false]);
 
     Route::get('/home', 'AdminHomeController@index')->name('admin_home');
+    Route::get('/item', 'AdminItemController@index');
+    Route::get('/item/{item}','AdminItemController@show');
+    Route::put('/item/{item}', 'AdminItemController@update');
 });
 
 Auth::routes();
