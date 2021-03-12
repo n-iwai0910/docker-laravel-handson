@@ -20,7 +20,16 @@
                         商品説明<input type="text" class="form-control" name="detail" value="{{ $item->detail }}"><br>
                         販売価格<input type="text" class="form-control" name="price" value="{{ $item->price }}"><br>
                         在庫数<input type="text" class="form-control" name="stock" value="{{ $item->stock }}"><br>
-                        <button type="submit" class="btn btn-primary">更新</button>
+                        <button type="submit" class="btn btn-primary ml-3">更新</button>
+                    </form>
+                </div>
+            </div>
+            <div class="card">
+                <div class="cart_item_box">
+                    <form method="POST" action="/admin/item/{{ $item->id }}">
+                        @method('DELETE')
+                        @csrf
+                        <button type="submit" class="btn btn-danger ml-3">商品を削除</button>
                     </form>
                 </div>
             </div>

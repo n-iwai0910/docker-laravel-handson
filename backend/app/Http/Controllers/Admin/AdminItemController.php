@@ -29,4 +29,10 @@ class AdminItemController extends Controller
         $Item->save();
         return redirect('admin/item')->with('flash_message', '商品情報を更新しました');
     }
+
+    public function destroy(Item $Item)
+    {
+        $Item->delete();
+        return redirect('admin/item')->with('flash_message', 'カートから削除しました' );
+    }
 }

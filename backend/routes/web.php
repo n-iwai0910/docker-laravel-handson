@@ -36,6 +36,7 @@ Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin.')-
     Route::get('/item', 'AdminItemController@index');
     Route::get('/item/{item}','AdminItemController@show');
     Route::put('/item/{item}', 'AdminItemController@update');
+    Route::delete('/item/{item}', 'AdminItemController@destroy');
 });
 
 Auth::routes();
