@@ -73,7 +73,7 @@
                             </li>
                             {{--追加--}}
                             <a href="{{ url('/cartitem') }}" >
-                                <img src="{{ asset('image/cart.png') }}" class="cart" >
+                                <img src="{{ asset('images/cart.png') }}" class="cart" >
                             </a>
                         @endguest
 

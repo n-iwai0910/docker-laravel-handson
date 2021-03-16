@@ -9,11 +9,13 @@
 
            <div class="card-body">
               <div class="cart_item_box">
-
+                    @empty ($item->image_path)
+                        <img src="/image/{{$item->image}}" alt="" class="incart">
+                    @else
+                        <img src="{{ Storage::url($item->image_path) }}" alt="" class="incart">
+                    @endif
                     {{$item->name}} <br>
                     {{$item->price}}円<br>
-                    <img src="/image/{{$item->image}}" alt="" class="incart">
-                    <br>
                     {{$item->detail}} <br>
                     在庫数{{$item->stock}} <br>
 

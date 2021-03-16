@@ -35,6 +35,7 @@ Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin.')-
     Route::get('/home', 'AdminHomeController@index')->name('admin_home');
     Route::get('/item', 'AdminItemController@index');
     Route::get('/item/{item}','AdminItemController@show');
+    Route::match(['GET', 'POST'], '/create', 'AdminItemController@create');
     Route::put('/item/{item}', 'AdminItemController@update');
     Route::delete('/item/{item}', 'AdminItemController@destroy');
 });

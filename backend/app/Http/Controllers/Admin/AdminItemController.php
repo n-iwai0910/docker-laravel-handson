@@ -20,6 +20,42 @@ class AdminItemController extends Controller
     	return view('admin/show', ['item' => $item]);
     }
 
+    public function create(Request $request)
+    {
+    	//POST
+    	if ($request->isMethod('POST')) {
+    		
+    		//商品情報の保存
+
+    		//if($image) {
+
+    			//$path = $images->store("image", "public");
+
+    			//if($path) {
+    			$item =	Item::create([
+    					"name" => $request->post("name"),
+    		            "detail" => $request->post("detail"),
+    		            "price" => $request->post("price"),
+    		            "stock" => $request->post("stock"),
+    			]);
+
+                foreach ($request->file('files') as $index=> $e) {
+                $ext = $e['image']->guessExtension();
+                $filename = "{$request->name}_{$index}.{$ext}";
+                $path = $e['image']->storeAs('public/images', $filename);
+                // photosメソッドにより、商品に紐付けられた画像を保存する
+                $item->photos()->create(['path'=> $path]);
+                }
+
+            return redirect('/admin/item')->with(['success'=> '保存しました！']);
+    	}
+
+    	//GET
+    	return view('admin/create');
+    }
+
+
+
     public function update(Request $request, Item $Item)
     {
         $Item->name = $request->post('name');

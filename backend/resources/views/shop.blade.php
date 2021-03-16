@@ -15,8 +15,14 @@
                         <div class="cart_item_box">
                           {{$item->name}} <br>
                           {{$item->price}}円<br>
+                          {{$item->photos->path}}
                           <a href="shop/{{ $item->id }}">
-                            <img src="/image/{{$item->image}}" alt="" class="incart">
+                              <!--@empty ($item->path)
+                                  <img src="/image/{{$item->image}}" alt="" class="incart">
+                              @else-->
+                                  <img src="{{ Storage::url($item->photos->path) }}" alt="" class="incart">
+                                  {{$item->photos->path}}
+                              <!--@endif-->
                           </a>
                           <br>
     

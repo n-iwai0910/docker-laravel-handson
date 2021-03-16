@@ -10,5 +10,11 @@ class Item extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name', 'detail', 'price', 'image', 'stock'];
+    
+     public function photos()
+    {
+        return $this->hasMany('App\Models\ItemPhoto');
+    }
 
 }

@@ -17,7 +17,11 @@
                         {{$cart_item->item->name}} <br>
                         {{ number_format($cart_item->item->price)}}円 <br>
                         {{ number_format($cart_item->quantity)}}個 <br>
-                          <img src = "/image/{{$cart_item->item->image}}" alt="" class="incart" >
+                        @empty ($item->image_path)
+                            <img src="/image/{{$item->image}}" alt="" class="incart">
+                        @else
+                            <img src="{{ Storage::url($item->image_path) }}" alt="" class="incart">
+                        @endif
                           <br>
 
                           <form action="/cartdelete" method="post">

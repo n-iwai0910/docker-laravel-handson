@@ -16,7 +16,13 @@
                       <div class="cart_item_box">
                         {{$cartitem->name}} <br>
                         {{ number_format($cartitem->price)}}円 <br>
-                          <img src = "/image/{{$cartitem->image}}" alt="" class="incart" >
+                        <a href="shop/{{ $item->id }}">
+                            @empty ($item->image_path)
+                                <img src="/image/{{$item->image}}" alt="" class="incart">
+                            @else
+                                <img src="{{ Storage::url($item->image_path) }}" alt="" class="incart">
+                            @endif
+                        </a>
                           <br>
               
                         <form method="POST" action="/cartitem/{{ $cartitem->id }}">

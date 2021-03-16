@@ -8,7 +8,11 @@
            商品詳細</h1>
             <div class="card">
                 <div class="cart_item_box">
+                    @empty ($item->path)
                         <img src="/image/{{$item->image}}" alt="" class="incart">
+                    @else
+                        <img src="{{ Storage::url($item->path) }}" alt="" class="incart">
+                    @endif
                 </div>
             </div>
             <div class="card">
