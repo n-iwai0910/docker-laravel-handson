@@ -31,7 +31,9 @@
                     <input type="integer" class="form-control" name="stock" value="">
                     <br>
                     <label for="image">画像ファイル（複数可）:</label>
-                    <input type="file" class="form-control" name="files[][image]" multiple>
+                    <input type="file" class="form-control" name="files[][image]">
+                    <input type="file" class="form-control" name="files[][image]">
+                    <input type="file" class="form-control" name="files[][image]">
                     <br>
                     <hr>
                     <button class="btn btn-success"> Upload </button>

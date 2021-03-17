@@ -25,21 +25,24 @@ class AdminItemController extends Controller
     	//POST
     	if ($request->isMethod('POST')) {
     		
-    		//商品情報の保存
+    		
+            $request->validate([
+                'name'=>['required','string','max:255'],
+                'detail'=>['required','string','max:255'],
+                'price'=>['required','integer','max:50000'],
+                'stock'=>['required','integer','max:1000'],
+                'files.*.image'=>['file','mimes:jpeg,png,jpg','max:2480','required'],
+            ]);
+            
+            //商品情報の保存
+    	    $item =	Item::create([
+    			"name" => $request->post("name"),
+    		    "detail" => $request->post("detail"),
+    		    "price" => $request->post("price"),
+    		    "stock" => $request->post("stock"),
+    		]);
 
-    		//if($image) {
-
-    			//$path = $images->store("image", "public");
-
-    			//if($path) {
-    			$item =	Item::create([
-    					"name" => $request->post("name"),
-    		            "detail" => $request->post("detail"),
-    		            "price" => $request->post("price"),
-    		            "stock" => $request->post("stock"),
-    			]);
-
-                foreach ($request->file('files') as $index=> $e) {
+            foreach ($request->file('files') as $index=> $e) {
                 $ext = $e['image']->guessExtension();
                 $filename = "{$request->name}_{$index}.{$ext}";
                 $path = $e['image']->storeAs('public/images', $filename);

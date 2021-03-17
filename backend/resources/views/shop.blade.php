@@ -10,23 +10,19 @@
                   
 
                     @foreach($items as $item)
+                   
 
                       <div class="col-xs-6 col-sm-4 col-md-4">
                         <div class="cart_item_box">
-                          {{$item->name}} <br>
-                          {{$item->price}}円<br>
-                          {{$item->photos->path}}
                           <a href="shop/{{ $item->id }}">
-                              <!--@empty ($item->path)
-                                  <img src="/image/{{$item->image}}" alt="" class="incart">
-                              @else-->
-                                  <img src="{{ Storage::url($item->photos->path) }}" alt="" class="incart">
-                                  {{$item->photos->path}}
-                              <!--@endif-->
+                          {{$item->name}} <br>
                           </a>
-                          <br>
-    
-
+                          {{$item->price}}円<br>
+                          <!--@if ($item->photos != null)
+                              @foreach ($item->photos as $photo)
+                                  <img src="{{ Storage::url($photo->path) }}" alt="" class="incart">
+                              @endforeach
+                          @endif-->
                           {{-- 追加 --}}
 
 
@@ -50,7 +46,7 @@
                       </div>
                     @endforeach
                      <div class="text-center" style="width: 100px;margin: 20px auto;">
-                    {{ $items->links()}} 
+                    
 
                  
                </div>

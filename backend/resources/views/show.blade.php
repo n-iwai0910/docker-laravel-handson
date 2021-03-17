@@ -9,16 +9,18 @@
 
            <div class="card-body">
               <div class="cart_item_box">
-                    @empty ($item->image_path)
-                        <img src="/image/{{$item->image}}" alt="" class="incart">
+
+                    @if ($item->photos != null)
+                        @foreach ($item->photos as $photo)
+                            <img src="{{ Storage::url($photo->path) }}" alt="" class="incart">
+                        @endforeach
                     @else
-                        <img src="{{ Storage::url($item->image_path) }}" alt="" class="incart">
+                        <img src="/image/{{$item->image}}" alt="" class="incart">
                     @endif
                     {{$item->name}} <br>
                     {{$item->price}}円<br>
                     {{$item->detail}} <br>
                     在庫数{{$item->stock}} <br>
-
 
                       <form action="cart_item" method="post">
                         @csrf
