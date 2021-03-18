@@ -10,7 +10,12 @@ use Illuminate\Support\Facades\Auth;
 class OrderItem extends Model
 {
     use HasFactory;
-    protected $fillable = ['user_id', 'item_id', 'quantity'];
+    protected $fillable = ['order_id', 'user_id', 'item_id', 'quantity'];
+
+    public function order()
+    {
+        return $this->belongsTo('App\Models\Order');
+    }
 
      public function item()
    {
@@ -21,4 +26,5 @@ class OrderItem extends Model
    {
        return $this->belongsTo('\App\Models\CartItem');
    }
+
 }

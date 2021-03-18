@@ -10,5 +10,9 @@ use App\Models\OrderItem;
 
 class AdminOrderController extends Controller
 {
-    //
+    public function index()
+	{
+        $orders = Order::all();
+        return view('admin/order', ['orders' => $orders]);
+    }
 }

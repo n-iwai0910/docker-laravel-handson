@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Session;
 
 
 class LoginController extends Controller
@@ -46,6 +47,8 @@ class LoginController extends Controller
     protected function guard(){
         return Auth::guard('admin');
     }
+
+    
      /**
      * ログアウトしたときの画面遷移先
      */

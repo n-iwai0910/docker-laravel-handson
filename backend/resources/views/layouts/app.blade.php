@@ -11,6 +11,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="https://ajaxzip3.github.io/ajaxzip3.js" charset="UTF-8"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -73,7 +74,7 @@
                             </li>
                             {{--追加--}}
                             <a href="{{ url('/cartitem') }}" >
-                                <img src="{{ asset('images/cart.png') }}" class="cart" >
+                                <img src="{{ asset('image/cart.png') }}" class="cart" >
                             </a>
                         @endguest
 

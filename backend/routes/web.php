@@ -13,12 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+
+
 Route::get('/', 'App\Http\Controllers\ShopController@index');
 Route::get('/home', 'App\Http\Controllers\HomeController@index');
 Route::get('/shop/{item}','App\Http\Controllers\ShopController@show');
 Route::get('/cart_item', 'App\Http\Controllers\ShopController@cart_item');//->middleware('auth');
-Route::post('/cart_item', 'App\Http\Controllers\ShopController@addCart_item');
-Route::post('/shop/cart_item', 'App\Http\Controllers\ShopController@addCart_item');
+Route::post('/shop/cartitem', 'App\Http\Controllers\CartItemController@store');
 Route::post('/cartdelete', 'App\Http\Controllers\ShopController@deleteCart');
 Route::post('/thanks', 'App\Http\Controllers\ShopController@thanks');
 Route::post('/cartitem', 'App\Http\Controllers\CartItemController@store');
@@ -27,6 +29,8 @@ Route::delete('/cartitem/{cartItem}', 'App\Http\Controllers\CartItemController@d
 Route::put('/cartitem/{cartItem}', 'App\Http\Controllers\CartItemController@update');
 Route::get('/order', 'App\Http\Controllers\OrderController@index');
 Route::post('/order', 'App\Http\Controllers\OrderController@store');
+
+Auth::routes();
 
 Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin.')->group(function(){
 
@@ -38,7 +42,7 @@ Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin.')-
     Route::match(['GET', 'POST'], '/create', 'AdminItemController@create');
     Route::put('/item/{item}', 'AdminItemController@update');
     Route::delete('/item/{item}', 'AdminItemController@destroy');
+    Route::get('/order', 'AdminOrderController@index');
 });
 
-Auth::routes();
 

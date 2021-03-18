@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\CartItem;
+use App\Models\Item;
+use App\Rules\Postcode;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 			
@@ -42,11 +45,9 @@ class OrderController extends Controller
     		$order->last_name_kana = $request->input('last_name');
     		$order->first_name_kana = $request->input('first_name');
     		$order->postcode = $request->input('postcode');
-    		$order->region = $request->input('region');
     		$order->address = $request->input('address');
     		$order->phonenumber = $request->input('phonenumber');
     		$order->save();
-
 
     		$id = Auth::id();
             $orderitem = new OrderItem;
@@ -60,6 +61,8 @@ class OrderController extends Controller
               foreach($cartitems as $cartitem){
                 $totalprice += $cartitem->price * $cartitem->quantity;
               }
+
+
      
             foreach($cartitems as $cartitem){
               $cartitems = [
@@ -72,11 +75,28 @@ class OrderController extends Controller
     	      DB::table('order_items')
     	        ->where('user_id', $id)
     	        ->insert($cartitems);
+
+             // Machine::where('id', $request->m_id)->decrement('money', $request->price);
     	    }
     	    
             CartItem::where('user_id', Auth::id())->delete();
     		return view('order/complete');
     	}
+
+        $input = $request->all();
+
+        Validator::make($input, [
+            'postcode' => ['required',new Postcode],
+        ])->validate();
+
+        $request->validate([
+            'last_name' => 'min:1|max:50|regex:/^[^A-Za-z0-9]+$/u',
+            'first_name' => 'min:1|max:50|regex:/^[^A-Za-z0-9]+$/u',
+            'last_name_kana' => 'min:1|max:50|regex:/^[ァ-ヶ 　]+$/u',
+            'first_name_kana' => 'min:1|max:50|regex:/^[ァ-ヶ 　]+$/u',
+            'address' => 'min:1|max:100|',
+            'phonenumber' => 'min:10|max:11|regex:/^[0-9]+$/u',
+            ]);
 
     	$request->flash();
     	return $this->index();

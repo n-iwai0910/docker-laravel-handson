@@ -22,7 +22,7 @@
                     {{$item->detail}} <br>
                     在庫数{{$item->stock}} <br>
 
-                      <form action="cart_item" method="post">
+                      <form action="cartitem" method="post">
                         @csrf
                             <select name="quantity" class="form-control col-md-2 mr-1">
                                 <option selected>1</option>

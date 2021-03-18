@@ -7,6 +7,16 @@
       <h1 class="text-center font-weight-bold" style="color:#555555;  font-size:1.2em; padding:24px 0px;">お届け先入力
       </h1>
 
+      @if ($errors->any())
+          <div class="alert alert-danger">
+              <ul>
+                  @foreach ($errors->all() as $error)
+                      <li>{{ $error }}</li>
+                  @endforeach
+              </ul>
+          </div>
+      @endif
+
       <div class="card-body">
         <form method="POST" action="/order">
           @csrf
@@ -59,20 +69,7 @@
                 <p class="form-control-static">{{ old('postcode')}}</p>
                 <input id="postcode" type="hidden" name="postcode" value="{{ old( 'postcode' )}}">
               @else
-                <input id="postcode" type="text" class="form-control" name="postcode" value="{{ old( 'postcode' )}}">
-              @endif
-            </div>
-            <div class="form-group col-md-4">
-              <label for="region">都道府県</label>
-              @if(Request::has('confirm'))
-                <p class="form-control-static">{{ old('region')}}</p>
-                <input id="region" type="hidden" name="region" value="{{ old( 'region' )}}">
-              @else
-                <select id="region" class="form-control" name="region">
-                  @foreach(Config::get('region') as $value)
-                    <option @if(old('region') == $value) selected @endif>{{ $value }}</option>
-                  @endforeach
-                </select>
+                <input id="postcode" type="text" class="form-control" name="postcode" value="{{ old( 'postcode' )}}" size="10" maxlength="8" onKeyUp="AjaxZip3.zip2addr(this,'','address','address');">
               @endif
             </div>
           </div>
@@ -84,7 +81,7 @@
                 <p class="form-control-static">{{ old('address')}}</p>
                 <input id="address" type="hidden" name="address" value="{{ old( 'address' )}}">
               @else
-                <input id="address" type="text" class="form-control" name="address" value="{{ old( 'address' )}}">
+                <input id="address" type="text" class="form-control" name="address" value="{{ old( 'address' )}}" size="60">
               @endif
             </div>
           </div>

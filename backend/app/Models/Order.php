@@ -23,8 +23,14 @@ class Order extends Model
                            ];
 
     public function item()
-   {
+    {
        return $this->belongsTo('\App\Models\Item');
-   }
+    }
+
+    public function orderitems()
+    {
+        return $this->hasMany('App\Models\OrderItem');
+    }
+
 }
 

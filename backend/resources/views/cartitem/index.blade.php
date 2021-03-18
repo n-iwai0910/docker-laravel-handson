@@ -14,23 +14,17 @@
 {{--ここまで--}}
                     @foreach($cartitems as $cartitem)
                       <div class="cart_item_box">
-                        {{$cartitem->name}} <br>
-                        {{ number_format($cartitem->price)}}円 <br>
-                        <a href="shop/{{ $item->id }}">
-                            @empty ($item->image_path)
-                                <img src="/image/{{$item->image}}" alt="" class="incart">
-                            @else
-                                <img src="{{ Storage::url($item->image_path) }}" alt="" class="incart">
-                            @endif
-                        </a>
-                          <br>
+                          {{$cartitem->name}} <br>
+                          {{ number_format($cartitem->price)}}円 <br>
               
                         <form method="POST" action="/cartitem/{{ $cartitem->id }}">
                           @method('PUT')
                           @csrf
                           <input type="text" class="form-control" name="quantity" value="{{ $cartitem->quantity}}">個
+                          <br>
                           <button type="submit" class="btn btn-primary">更新</button>
                         </form>
+                        <br>
                   
 
                         <form method="POST" action="/cartitem/{{ $cartitem->id }}">
@@ -50,12 +44,6 @@
                         レジに進む
                       </a>
                     </div>
-                    <!--
-                    <form action="/thanks" method="POST">
-                      @csrf
-                      <button type="submit" class="btn btn-danger btn-lg text-center buy-btn" >購入する</button>
-                    </form>
-                    -->
 
 {{--追加--}}
               @else
