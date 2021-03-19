@@ -56,7 +56,7 @@ class CartItemController extends Controller
                 'quantity' => $request->post('quantity'),
             ]
         );
-        return redirect('/')->with('flash_message', 'カートに追加しました');;
+        return redirect('/')->with('flash_message', 'カートに追加しました');
     }
 
     /**

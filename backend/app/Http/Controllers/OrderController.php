@@ -37,22 +37,9 @@ class OrderController extends Controller
        
     	if( $request->has('post')) {
 
-    		$order = new Order();
-    	    $order->user_id = Auth::id();
-    		$order->email = Auth::user()->email;
-    		$order->last_name = $request->input('last_name');
-    		$order->first_name = $request->input('first_name');
-    		$order->last_name_kana = $request->input('last_name');
-    		$order->first_name_kana = $request->input('first_name');
-    		$order->postcode = $request->input('postcode');
-    		$order->address = $request->input('address');
-    		$order->phonenumber = $request->input('phonenumber');
-    		$order->save();
+            $id = Auth::id();
 
-    		$id = Auth::id();
-            $orderitem = new OrderItem;
-
-            $cartitems =  CartItem::select('cart_items.*', 'items.name', 'items.price',  'items.image')
+            $cartitems =  CartItem::select('cart_items.*', 'items.name', 'items.price',  'items.image', 'items.stock')
               ->where('user_id', Auth::id()) 
               ->join('items', 'items.id', '=', 'cart_items.item_id')
               ->get();
@@ -60,28 +47,47 @@ class OrderController extends Controller
             $totalprice = 0;
               foreach($cartitems as $cartitem){
                 $totalprice += $cartitem->price * $cartitem->quantity;
-              }
+                $quantity = $cartitem->quantity;
+                $item = Item::where('id', $cartitem->item_id)->first();
+            }
 
 
-     
-            foreach($cartitems as $cartitem){
-              $cartitems = [
-                'user_id' => $cartitem->user_id,
-                'item_id' => $cartitem->item_id,
-                'quantity' => $cartitem->quantity,
-                'total_price' => $totalprice,
-                ];
+            if($quantity > $item->stock ) {
+                echo '在庫が足りない商品が入っています';
+            } else {
 
-    	      DB::table('order_items')
-    	        ->where('user_id', $id)
-    	        ->insert($cartitems);
+                foreach($cartitems as $cartitem){
+                    $cartitems = [
+                    'user_id' => $cartitem->user_id,
+                    'item_id' => $cartitem->item_id,
+                    'quantity' => $cartitem->quantity,
+                    'total_price' => $totalprice,
+                    ];
 
-             // Machine::where('id', $request->m_id)->decrement('money', $request->price);
-    	    }
-    	    
-            CartItem::where('user_id', Auth::id())->delete();
-    		return view('order/complete');
-    	}
+            
+                    DB::table('order_items')
+                    ->where('user_id', $id)
+                    ->insert($cartitems);
+
+                    Item::where('id',$cartitem->item_id)->decrement('stock',$cartitem->quantity);
+                }
+
+                $order = new Order();
+    	        $order->user_id = Auth::id();
+    		    $order->email = Auth::user()->email;
+    		    $order->last_name = $request->input('last_name');
+    		    $order->first_name = $request->input('first_name');
+    		    $order->last_name_kana = $request->input('last_name');
+    		    $order->first_name_kana = $request->input('first_name');
+    		    $order->postcode = $request->input('postcode');
+    		    $order->address = $request->input('address');
+    		    $order->phonenumber = $request->input('phonenumber');
+    		    $order->save();
+
+                CartItem::where('user_id', Auth::id())->delete();
+                return view('order/complete');
+            } 
+        }
 
         $input = $request->all();
 
