@@ -16,10 +16,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'App\Http\Controllers\ShopController@index');
 
-
+Route::group(['middleware' => ['auth']], function () {
     Route::get('/home', 'App\Http\Controllers\HomeController@index');
     Route::get('/shop/{item}','App\Http\Controllers\ShopController@show');
-    Route::get('/cart_item', 'App\Http\Controllers\ShopController@cart_item');//->middleware('auth');
+    Route::get('/cart_item', 'App\Http\Controllers\ShopController@cart_item');
     Route::post('/shop/cartitem', 'App\Http\Controllers\CartItemController@store');
 	Route::post('/cartdelete', 'App\Http\Controllers\ShopController@deleteCart');
 	Route::post('/thanks', 'App\Http\Controllers\ShopController@thanks');
@@ -29,13 +29,14 @@ Route::get('/', 'App\Http\Controllers\ShopController@index');
 	Route::put('/cartitem/{cartItem}', 'App\Http\Controllers\CartItemController@update');
 	Route::get('/order', 'App\Http\Controllers\OrderController@index');
 	Route::post('/order', 'App\Http\Controllers\OrderController@store');
+});
 
-    Auth::routes();
 
-	Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin.')->group(function(){
+Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin.')->group(function(){
 
-    	Auth::routes(['register' => false]);
+    Auth::routes(['register' => false]);
 
+    Route::group(['middleware' => ['auth']], function () {
     	Route::get('/home', 'AdminHomeController@index')->name('admin_home');
     	Route::get('/item', 'AdminItemController@index');
     	Route::get('/item/{item}','AdminItemController@show');
@@ -44,4 +45,6 @@ Route::get('/', 'App\Http\Controllers\ShopController@index');
     	Route::delete('/item/{item}', 'AdminItemController@destroy');
     	Route::get('/order', 'AdminOrderController@index');	
     });
+});
 
+Auth::routes();

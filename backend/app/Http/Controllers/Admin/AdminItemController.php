@@ -9,6 +9,18 @@ use App\Models\Item;
 
 class AdminItemController extends Controller
 {   
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
+
+    
 	public function index()
 	{
         $items = Item::all();

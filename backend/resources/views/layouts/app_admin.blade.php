@@ -66,8 +66,14 @@
                                     </form>
 
                                     {{--追加--}}
-                                    <a class="dropdown-item" href="{{ url('/cartitem') }}">
-                                        カートを見る
+                                    <a class="dropdown-item" href="{{ url('/admin/item') }}">
+                                        商品一覧
+                                    </a>
+                                    <a class="dropdown-item" href="{{ url('/admin/create') }}">
+                                        商品登録
+                                    </a>
+                                    <a class="dropdown-item" href="{{ url('/admin/order') }}">
+                                        注文一覧
                                     </a>
                                 </div>
                             </li>
