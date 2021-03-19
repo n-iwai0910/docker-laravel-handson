@@ -17,4 +17,9 @@ class Item extends Model
         return $this->hasMany('App\Models\ItemPhoto');
     }
 
+    public function orderitem()
+    {
+        return $this->belongsTo('App\Models\OrderItem');
+    }
+
 }

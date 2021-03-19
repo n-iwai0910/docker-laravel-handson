@@ -3,7 +3,7 @@
 @section('content')
 <div class="container-fluid">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="">
             <h1 class="text-center font-weight-bold" style="color:#555555;  font-size:1.2em; padding:24px 0px;">
            注文一覧</h1>
             <div class="card">
@@ -21,10 +21,14 @@
                                     <th>住所</th>
                                     <th>電話番号</th>
                                     <th>メールアドレス</th>
+                                    <th>商品名</th>
+                                    <th>個数</th>
+                                    <th>合計金額<th>
                                 </tr>
                             </thead>
                             <tbody>
                             @foreach ($orders as $order)
+                            @foreach ($order->orderitems as $orderitem)
                                 <tr>
                                     <td>{{ $order->id }}</td>
                                     <td>{{ $order->last_name }}</td>
@@ -35,8 +39,12 @@
                                     <td>{{ $order->address }}</td>
                                     <td>{{ $order->phonenumber }}</td>
                                     <td>{{ $order->email }}</td>
+                                    <td>{{ $orderitem->name }}</td>
+                                    <td>{{ $orderitem->quantity }}</td>
+                                    <td>{{ $orderitem->total_price }}</td>
                                 </tr>
                             </tbody>
+                            @endforeach
                             @endforeach
                         </table>
                     </div>

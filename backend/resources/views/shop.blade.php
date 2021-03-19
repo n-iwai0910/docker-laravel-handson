@@ -23,13 +23,6 @@
                           {{$item->name}} <br>
                           </a>
                           {{$item->price}}円<br>
-                          <!--@if ($item->photos != null)
-                              @foreach ($item->photos as $photo)
-                                  <img src="{{ Storage::url($photo->path) }}" alt="" class="incart">
-                              @endforeach
-                          @endif-->
-                          {{-- 追加 --}}
-
 
                           <form action="cartitem" method="post">
                             @csrf

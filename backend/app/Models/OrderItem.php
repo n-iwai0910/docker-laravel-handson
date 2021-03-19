@@ -10,16 +10,16 @@ use Illuminate\Support\Facades\Auth;
 class OrderItem extends Model
 {
     use HasFactory;
-    protected $fillable = ['order_id', 'user_id', 'item_id', 'quantity'];
+    protected $fillable = ['order_id', 'user_id', 'item_id', 'name', 'quantity'];
 
     public function order()
     {
         return $this->belongsTo('App\Models\Order');
     }
 
-     public function item()
+     public function items()
    {
-       return $this->belongsTo('\App\Models\Item');
+       return $this->hasMany('\App\Models\Item');
    }
 
    public function CartItem()
