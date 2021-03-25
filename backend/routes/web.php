@@ -15,10 +15,10 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', 'App\Http\Controllers\ShopController@index');
+Route::get('/shop/{item}','App\Http\Controllers\ShopController@show');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/home', 'App\Http\Controllers\HomeController@index');
-    Route::get('/shop/{item}','App\Http\Controllers\ShopController@show');
     Route::get('/cart_item', 'App\Http\Controllers\ShopController@cart_item');
     Route::post('/shop/cartitem', 'App\Http\Controllers\CartItemController@store');
 	Route::post('/cartdelete', 'App\Http\Controllers\ShopController@deleteCart');
@@ -31,6 +31,7 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::post('/order', 'App\Http\Controllers\OrderController@store');
 });
 
+Auth::routes();
 
 Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin.')->group(function(){
 
@@ -47,4 +48,7 @@ Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin.')-
     });
 });
 
-Auth::routes();
+
+Route::get('test', function () {
+    return view('test');
+});

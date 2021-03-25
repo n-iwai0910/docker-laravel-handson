@@ -30,10 +30,36 @@
                     <label for="stock">在庫数:</label>
                     <input type="integer" class="form-control" name="stock" value="">
                     <br>
-                    <label for="image">画像ファイル（複数可）:</label>
-                    <input type="file" class="form-control" name="files[][image]">
-                    <input type="file" class="form-control" name="files[][image]">
-                    <input type="file" class="form-control" name="files[][image]">
+                    <label for="image">画像ファイル（１０枚まで）:</label>
+                    <input type="file" class="form-control" id="image" name="files[][image]" accept="image/*">
+                    <img id="preview">
+
+                    <input type="file" class="form-control" id="image2" name="files[][image]" accept="image/*">
+                    <img id="preview2">
+
+                    <input type="file" class="form-control" id="image3" name="files[][image]" accept="image/*">
+                    <img id="preview3">
+
+                    <input type="file" class="form-control" id="image4" name="files[][image]" accept="image/*">
+                    <img id="preview4">
+
+                    <input type="file" class="form-control" id="image5" name="files[][image]" accept="image/*">
+                    <img id="preview5">
+
+                    <input type="file" class="form-control" id="image6" name="files[][image]" accept="image/*">
+                    <img id="preview6">
+
+                    <input type="file" class="form-control" id="image7" name="files[][image]" accept="image/*">
+                    <img id="preview7">
+
+                    <input type="file" class="form-control" id="image8" name="files[][image]" accept="image/*">
+                    <img id="preview8">
+
+                    <input type="file" class="form-control" id="image9" name="files[][image]" accept="image/*">
+                    <img id="preview9">
+
+                    <input type="file" class="form-control" id="image10" name="files[][image]" accept="image/*">
+                    <img id="preview10">
                     <br>
                     <hr>
                     <button class="btn btn-success"> Upload </button>

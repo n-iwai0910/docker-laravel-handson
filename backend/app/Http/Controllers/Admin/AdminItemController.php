@@ -20,7 +20,8 @@ class AdminItemController extends Controller
         $this->middleware('auth:admin');
     }
 
-    
+
+
 	public function index()
 	{
         $items = Item::all();
@@ -36,6 +37,7 @@ class AdminItemController extends Controller
     {
     	//POST
     	if ($request->isMethod('POST')) {
+
     		
     		
             $request->validate([
@@ -43,7 +45,7 @@ class AdminItemController extends Controller
                 'detail'=>['required','string','max:255'],
                 'price'=>['required','integer','max:50000'],
                 'stock'=>['required','integer','max:1000'],
-                'files.*.image'=>['file','mimes:jpeg,png,jpg','max:2480','required'],
+                'files.*.image'=>['file','mimes:jpeg,png,jpg,gif','max:2480','required'],
             ]);
             
             //商品情報の保存

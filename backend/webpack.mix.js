@@ -11,7 +11,8 @@ const mix = require('laravel-mix');
  |
  */
 
+// webpack.mix.js (新しく作った jQuery, vanilla のソースコードのパスを追加)
 mix.js('resources/js/app.js', 'public/js')
-    .sass('resources/sass/app.scss', 'public/css')
-
-    
+    .js('resources/js/assets/test_jquery.js', 'public/js') 
+    .scripts('resources/js/assets/test_vanilla.js', 'public/js/test_vanilla.js')
+    .sass('resources/sass/app.scss', 'public/css');

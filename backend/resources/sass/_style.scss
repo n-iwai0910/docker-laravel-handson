@@ -1,4 +1,4 @@
- img.cart{
+img.cart{
    width: 30px;
  }
  
@@ -10,11 +10,19 @@
    object-fit: cover;
  }
  
-  img.showitem{
-   width: 20%;
+ img.showitem{
+   width: 10%;
+   margin: 0 auto;
+   height: 500px;
+   object-fit: contain;
+ }
+ 
+
+  img.thumbitem{
+   width: 200px;
    display: block;
    margin: 0 auto;
-   height: 50px;
+   height: 200px;
    object-fit: cover;
  }
 
@@ -51,3 +59,4 @@
  .pagenate{
    width: 200px;margin: 20px auto;
  }
+

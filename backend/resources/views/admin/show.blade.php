@@ -7,12 +7,25 @@
             <h1 class="text-center font-weight-bold" style="color:#555555;  font-size:1.2em; padding:24px 0px;">
            商品詳細</h1>
             <div class="card">
-                <div class="cart_item_box">
+                <div class="cart_item_box">    
+                   <ul class="slider thumb-item">
                     @if ($item->photos != null)
                         @foreach ($item->photos as $photo)
-                            <img src="{{ Storage::url($photo->path) }}" alt="" class="incart">
+                            <img src="{{ Storage::url($photo->path) }}" alt="" class="showitem">
                         @endforeach
+                    @else
+                        <img src="/image/{{$item->image}}" alt="" class="showitem">
                     @endif
+                  </ul>
+                  <ul class="slider thumb-item-nav">
+                    @if ($item->photos != null)
+                        @foreach ($item->photos as $photo)
+                            <img src="{{ Storage::url($photo->path) }}" alt="" class="thumbitem">
+                        @endforeach
+                    @else
+                        <img src="/image/{{$item->image}}" alt="" class="thumbitem">
+                    @endif
+                  </ul>
                 </div>
             </div>
             <div class="card">
