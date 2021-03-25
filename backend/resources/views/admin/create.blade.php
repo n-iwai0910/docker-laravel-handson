@@ -31,34 +31,65 @@
                     <input type="integer" class="form-control" name="stock" value="">
                     <br>
                     <label for="image">画像ファイル（１０枚まで）:</label>
-                    <input type="file" class="form-control" id="image" name="files[][image]" accept="image/*">
+
+                    <div id="drop-zone" style="border: 1px solid; padding: 30px;">
+                        <p>ファイルをドラッグ＆ドロップもしくは</p>
+                        <input type="file" class="form-control" id="image" name="files[][image]" accept="image/*">
+                    </div>
                     <img id="preview">
 
-                    <input type="file" class="form-control" id="image2" name="files[][image]" accept="image/*">
+                    <div id="drop-zone" style="border: 1px solid; padding: 30px;">
+                        <p>ファイルをドラッグ＆ドロップもしくは</p>
+                        <input type="file" class="form-control" id="image2" name="files[][image]" accept="image/*">
+                    </div>
                     <img id="preview2">
 
-                    <input type="file" class="form-control" id="image3" name="files[][image]" accept="image/*">
+                    <div id="drop-zone" style="border: 1px solid; padding: 30px;">
+                        <p>ファイルをドラッグ＆ドロップもしくは</p>
+                        <input type="file" class="form-control" id="image3" name="files[][image]" accept="image/*">
+                    </div>
                     <img id="preview3">
 
-                    <input type="file" class="form-control" id="image4" name="files[][image]" accept="image/*">
+                    <div id="drop-zone" style="border: 1px solid; padding: 30px;">
+                        <p>ファイルをドラッグ＆ドロップもしくは</p>
+                        <input type="file" class="form-control" id="image4" name="files[][image]" accept="image/*">
+                    </div>
                     <img id="preview4">
 
-                    <input type="file" class="form-control" id="image5" name="files[][image]" accept="image/*">
+                    <div id="drop-zone" style="border: 1px solid; padding: 30px;">
+                        <p>ファイルをドラッグ＆ドロップもしくは</p>
+                        <input type="file" class="form-control" id="image5" name="files[][image]" accept="image/*">
+                    </div>
                     <img id="preview5">
 
-                    <input type="file" class="form-control" id="image6" name="files[][image]" accept="image/*">
+                    <div id="drop-zone" style="border: 1px solid; padding: 30px;">
+                        <p>ファイルをドラッグ＆ドロップもしくは</p>
+                        <input type="file" class="form-control" id="image6" name="files[][image]" accept="image/*">
+                    </div>
                     <img id="preview6">
 
-                    <input type="file" class="form-control" id="image7" name="files[][image]" accept="image/*">
+                    <div id="drop-zone" style="border: 1px solid; padding: 30px;">
+                        <p>ファイルをドラッグ＆ドロップもしくは</p>
+                        <input type="file" class="form-control" id="image7" name="files[][image]" accept="image/*">
+                    </div>
                     <img id="preview7">
 
-                    <input type="file" class="form-control" id="image8" name="files[][image]" accept="image/*">
+                    <div id="drop-zone" style="border: 1px solid; padding: 30px;">
+                        <p>ファイルをドラッグ＆ドロップもしくは</p>
+                        <input type="file" class="form-control" id="image8" name="files[][image]" accept="image/*">
+                    </div>
                     <img id="preview8">
 
-                    <input type="file" class="form-control" id="image9" name="files[][image]" accept="image/*">
+                    <div id="drop-zone" style="border: 1px solid; padding: 30px;">
+                        <p>ファイルをドラッグ＆ドロップもしくは</p>
+                        <input type="file" class="form-control" id="image9" name="files[][image]" accept="image/*">
+                    </div>
                     <img id="preview9">
 
-                    <input type="file" class="form-control" id="image10" name="files[][image]" accept="image/*">
+                    <div id="drop-zone" style="border: 1px solid; padding: 30px;">
+                        <p>ファイルをドラッグ＆ドロップもしくは</p>
+                        <input type="file" class="form-control" id="image10" name="files[][image]" accept="image/*">
+                    </div>
                     <img id="preview10">
                     <br>
                     <hr>

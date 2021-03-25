@@ -76,24 +76,52 @@ $('#image10').on('change', function (e) {
 });
 
 $(function() {
-$('.thumb-item').slick({
-infinite: true,
-slidesToShow: 1,
-slidesToScroll: 1,
-arrows: false,
-fade: true,
-asNavFor: '.thumb-item-nav'
+    $('.thumb-item').slick({
+        infinite: true,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: false,
+        fade: true,
+        asNavFor: '.thumb-item-nav'
+    });
+    $('.thumb-item-nav').slick({
+        accessibility: true,
+        autoplay: false,
+        autoplaySpeed: 4000,
+        speed: 400,
+        arrows: true,
+        infinite: true,
+        slidesToShow: 5,
+        slidesToScroll: 1,
+        asNavFor: '.thumb-item',
+        focusOnSelect: true,
+    });
 });
-$('.thumb-item-nav').slick({
-accessibility: true,
-autoplay: false,
-autoplaySpeed: 4000,
-speed: 400,
-arrows: true,
-infinite: true,
-slidesToShow: 5,
-slidesToScroll: 1,
-asNavFor: '.thumb-item',
-focusOnSelect: true,
+
+var dropZone = document.getElementById('drop-zone');
+
+dropZone.addEventListener('dragover', function(e) {
+    e.stopPropagation();
+    e.preventDefault();
+    this.style.background = '#e1e7f0';
+}, false);
+
+dropZone.addEventListener('dragleave', function(e) {
+    e.stopPropagation();
+    e.preventDefault();
+    this.style.background = '#ffffff';
+}, false);
+
+fileInput.addEventListener('change', function () {
+    previewFile(this.files[0]);
 });
-});
+
+dropZone.addEventListener('drop', function(e) {
+    e.stopPropagation();
+    e.preventDefault();
+    this.style.background = '#ffffff'; //背景色を白に戻す
+    var files = e.dataTransfer.files; //ドロップしたファイルを取得
+    if (files.length > 1) return alert('アップロードできるファイルは1つだけです。');
+    fileInput.files = files; //inputのvalueをドラッグしたファイルに置き換える。
+    previewFile(files[0]);
+}, false);
