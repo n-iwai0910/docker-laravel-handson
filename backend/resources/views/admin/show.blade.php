@@ -33,10 +33,69 @@
                     <form method="POST" action="/admin/item/{{ $item->id }}">
                         @method('PUT')
                         @csrf
-                        商品名<input type="text" class="form-control" name="name" value="{{ $item->name }}"><br>
-                        商品説明<input type="text" class="form-control" name="detail" value="{{ $item->detail }}"><br>
-                        販売価格<input type="text" class="form-control" name="price" value="{{ $item->price }}"><br>
-                        在庫数<input type="text" class="form-control" name="stock" value="{{ $item->stock }}"><br>
+                        <div class="form-group row">
+                            <div class="col-sm-2"></div>
+                            <label class="col-sm-2 col-form-label">janコード</label>
+                            <div class="col-sm-6">
+                               <input type="text" class="form-control" name="jan" value="{{ $item->jan }}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-2"></div>
+                            <label class="col-sm-2 col-form-label">商品名</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" name="name" value="{{ $item->name }}">   
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-2"></div>
+                            <label class="col-sm-2 col-form-label">商品説明</label>
+                            <div class="col-sm-6">
+                                <textarea name="detail" class="form-control" rows="5" cols="50" wrap="hard">{{ $item->detail }}</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-2"></div>
+                            <label class="col-sm-2 col-form-label">販売価格</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" name="price" value="{{ $item->price }}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-2"></div>
+                            <label class="col-sm-2 col-form-label">在庫数</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" name="stock" value="{{ $item->stock }}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-2"></div>
+                            <label class="col-sm-2 col-form-label">高さ（ｃｍ）</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" name="size_y" value="{{ $item->size_y }}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-2"></div>
+                            <label class="col-sm-2 col-form-label">幅（ｃｍ）</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" name="size_x" value="{{ $item->size_x }}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-2"></div>
+                            <label class="col-sm-2 col-form-label">奥行（ｃｍ）</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" name="size_z" value="{{ $item->size_z }}">
+                            </div>
+                        </div>
+                    　　<div class="form-group row">
+                            <div class="col-sm-2"></div>
+                            <label class="col-sm-2 col-form-label">重量（ｇ）</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" name="weight" value="{{ $item->weight }}">
+                            </div>
+                        </div>
                         <button type="submit" class="btn btn-primary ml-3">更新</button>
                     </form>
                 </div>

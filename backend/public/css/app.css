@@ -11003,4 +11003,8 @@ img.thumbitem {
   margin: 20px auto;
 }
 
+detail {
+  white-space: pre-wrap;
+}
+
 

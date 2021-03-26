@@ -41,19 +41,29 @@ class AdminItemController extends Controller
     		
     		
             $request->validate([
+                'jan'=>['required','integer','max:9999999999999'],
                 'name'=>['required','string','max:255'],
                 'detail'=>['required','string','max:255'],
                 'price'=>['required','integer','max:50000'],
                 'stock'=>['required','integer','max:1000'],
+                'size_x'=>['required','integer','max:1000'],
+                'size_y'=>['required','integer','max:1000'],
+                'size_z'=>['required','integer','max:1000'],
+                'weight'=>['required','integer','max:100000'],
                 'files.*.image'=>['file','mimes:jpeg,png,jpg,gif','max:2480','required'],
             ]);
             
             //商品情報の保存
     	    $item =	Item::create([
+                "jan" => $request->post("jan"),
     			"name" => $request->post("name"),
     		    "detail" => $request->post("detail"),
     		    "price" => $request->post("price"),
     		    "stock" => $request->post("stock"),
+                "size_x" => $request->post("size_x"),
+                "size_y" => $request->post("size_y"),
+                "size_z" => $request->post("size_z"),
+                "weight" => $request->post("weight")
     		]);
 
             foreach ($request->file('files') as $index=> $e) {
@@ -75,10 +85,16 @@ class AdminItemController extends Controller
 
     public function update(Request $request, Item $Item)
     {
+        $Item->jan = $request->post('jan');
         $Item->name = $request->post('name');
         $Item->detail = $request->post('detail');
         $Item->price = $request->post('price');
         $Item->stock = $request->post('stock');
+        $Item->size_x = $request->post("size_x");
+        $Item->size_y = $request->post("size_y");
+        $Item->size_z = $request->post("size_z");
+        $Item->weight = $request->post("weight");
+
         $Item->save();
         return redirect('admin/item')->with('flash_message', '商品情報を更新しました');
     }
