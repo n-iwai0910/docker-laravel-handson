@@ -48,7 +48,6 @@
                     <br><br>
 
                     <div class="row">
-                        
                         <div class=col-sm-5>
                             <label for="startday">掲載開始日</label>
                             <input type="text" id="calendarTEST" class="form-control" name="startday" value="">

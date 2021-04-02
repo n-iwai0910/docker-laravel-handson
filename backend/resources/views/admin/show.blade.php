@@ -97,10 +97,14 @@
                             </div>
                         </div><br>
                         <div class="form-group row">
-                            <div class="col-sm-2"></div>
-                            <label class="col-sm-2 col-form-label">掲載日</label>
-                            <div class="col-sm-6">
+                            <div class="col-sm-1"></div>
+                            <label class="col-sm-2 col-form-label">公開開始日</label>
+                            <div class="col-sm-3">
                                 <input type="text" id="calendarTEST" class="form-control" name="startday" value="{{ $item->startday }}">
+                            </div>
+                            <label class="col-sm-2 col-form-label">公開終了日</label>
+                            <div class="col-sm-3">
+                                <input type="text" id="calendarTEST" class="form-control" name="endday" value="{{ $item->endday }}">
                             </div>
                         </div><br>
                         <button type="submit" class="btn btn-primary ml-3">更新</button>

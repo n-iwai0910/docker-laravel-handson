@@ -9,6 +9,7 @@ use App\Models\Item;
 use App\Models\ItemPhoto;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use DateTime;
 
 
 class ShopController extends Controller
@@ -17,9 +18,10 @@ class ShopController extends Controller
     public function index()
     {   
     	$today = Carbon::today();
-        $items= DB::table('items')
+        $items = DB::table('items')
                     ->where('startday', '<=', $today )
                     ->where('endday', '>=', $today )
+                    ->orWhereNull('startday','endday')
                     ->get();
     	
     	//$items = Item::whereDate('startday', $today)->get();

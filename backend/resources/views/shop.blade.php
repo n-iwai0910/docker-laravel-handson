@@ -13,40 +13,29 @@
            <div class="">
                <div class="d-flex flex-row flex-wrap">
                   
-
-                    @foreach($items as $item)
-                   
-
-                      <div class="col-xs-6 col-sm-4 col-md-4">
-                        <div class="cart_item_box">
-                          <a href="shop/{{ $item->id }}">
-                          {{$item->name}} <br>
-                          </a>
-                          {{$item->price}}円<br>
-
-                          <form action="cartitem" method="post">
-                            @csrf
-                            <select name="quantity" class="form-control col-md-2 mr-1">
-                                <option selected>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </select>
-                            <input type="hidden" name="item_id" value="{{ $item->id }}">
-                            <input type="submit" value="カートに入れる">
-                          </form>
-
-                            {{-- ここまで --}}
-                        </div>
-
-
-                      </div>
-                    @endforeach
-                     <div class="text-center" style="width: 100px;margin: 20px auto;">
                     
-
-                 
+                    @foreach($items as $item)
+                            <div class="col-xs-6 col-sm-4 col-md-4">
+                                <div class="cart_item_box">
+                                    <a href="shop/{{ $item->id }}">
+                                        {{$item->name}} <br>
+                                    </a>
+                                    {{$item->price}}円<br>
+                                    <form action="cartitem" method="post">
+                                    @csrf
+                                        <select name="quantity" class="form-control col-md-2 mr-1">
+                                            <option selected>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                        </select>
+                                        <input type="hidden" name="item_id" value="{{ $item->id }}">
+                                        <input type="submit" value="カートに入れる">
+                                    </form>
+                                </div>
+                            </div>
+                    @endforeach
                </div>
            </div>
        </div>
