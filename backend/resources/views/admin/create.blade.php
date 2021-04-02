@@ -16,7 +16,7 @@
                 </ul>
                 @endif
                 <!-- フォーム -->
-                <form action="/admin/create" method="POST" enctype="multipart/form-data">
+                <form id="form" action="/admin/create" method="POST" enctype="multipart/form-data">
                     @csrf
                     <label for="jan">janコード:</label>
                     <input type="integer" class="form-control" name="jan" value="">
@@ -25,7 +25,8 @@
                     <input type="string" class="form-control" name="name" value="">
                     <br>
                     <label for="detail">商品説明:</label>
-                    <textarea name="detail" class="form-control" rows="5" cols="50" wrap="hard">文字を挿入</textarea>
+                    <textarea id="editor" name="detail" class="form-control" rows="5" cols="50" wrap="hard">文章を挿入</textarea>
+                    <!--<textarea name="detail" class="form-control" rows="5" cols="50" wrap="hard">文字を挿入</textarea>-->
                     <br>
                     <label for="price">販売価格:</label>
                     <input type="integer" class="form-control" name="price" value="">
@@ -44,7 +45,21 @@
                     <br>
                     <label for="weight">重さ（ｇ）:</label>
                     <input type="integer" class="form-control" name="weight" value="">
-                    <br>
+                    <br><br>
+
+                    <div class="row">
+                        
+                        <div class=col-sm-5>
+                            <label for="startday">掲載開始日</label>
+                            <input type="text" id="calendarTEST" class="form-control" name="startday" value="">
+                        </div>
+                        <div class=col-sm-1></div>
+                        <div class=col-sm-5>
+                            <label for="endday">掲載終了日</label>
+                            <input type="text" id="calendarTEST" class="form-control" name="endday" value="">
+                        </div>
+                    </div>
+                    <br><br>
                     <label for="image">画像ファイル（１０枚まで）:</label>
 
                     <div id="drop-zone" style="border: 1px solid; padding: 30px;">
@@ -72,7 +87,7 @@
                     <img id="preview10">
                     <br>
                     <hr>
-                    <button class="btn btn-success"> Upload </button>
+                    <button class="btn btn-success"  onclick="clickSubmit();"> Upload </button>
                 </form>
             </div>
             <a href="/admin/item">商品一覧へ</a>

@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Cart_item;//追加
 use App\Models\Item; 
 use App\Models\ItemPhoto;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 
 class ShopController extends Controller
@@ -14,9 +16,14 @@ class ShopController extends Controller
 
     public function index()
     {   
-    	$items = Item::all();
+    	$today = Carbon::today();
+        $items= DB::table('items')
+                    ->where('startday', '<=', $today )
+                    ->where('endday', '>=', $today )
+                    ->get();
+    	
+    	//$items = Item::whereDate('startday', $today)->get();
     	return view('shop', ['items' => $items]);
-
     }
 
     public function show(Item $item)

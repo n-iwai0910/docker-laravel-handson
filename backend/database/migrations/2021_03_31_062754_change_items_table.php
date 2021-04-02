@@ -14,7 +14,10 @@ class ChangeItemsTable extends Migration
     public function up()
     {
         Schema::table('items', function (Blueprint $table) {
-            $table->string('image')->nullable()->change();
+            $table->text('startday')->change();
+        });
+        Schema::table('items', function (Blueprint $table) {
+            $table->text('endday')->change();
         });
     }
 
@@ -26,7 +29,7 @@ class ChangeItemsTable extends Migration
     public function down()
     {
         Schema::table('items', function (Blueprint $table) {
-             $table->string('image')->nullable()->change();
+            //
         });
     }
 }

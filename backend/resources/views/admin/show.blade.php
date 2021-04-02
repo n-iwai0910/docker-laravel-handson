@@ -51,7 +51,7 @@
                             <div class="col-sm-2"></div>
                             <label class="col-sm-2 col-form-label">商品説明</label>
                             <div class="col-sm-6">
-                                <textarea name="detail" class="form-control" rows="5" cols="50" wrap="hard">{{ $item->detail }}</textarea>
+                                <textarea name="detail" id="editor">{{ $item->detail }}</textarea>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -89,13 +89,20 @@
                                 <input type="text" class="form-control" name="size_z" value="{{ $item->size_z }}">
                             </div>
                         </div>
-                    　　<div class="form-group row">
+                        <div class="form-group row">
                             <div class="col-sm-2"></div>
                             <label class="col-sm-2 col-form-label">重量（ｇ）</label>
                             <div class="col-sm-6">
                                 <input type="text" class="form-control" name="weight" value="{{ $item->weight }}">
                             </div>
-                        </div>
+                        </div><br>
+                        <div class="form-group row">
+                            <div class="col-sm-2"></div>
+                            <label class="col-sm-2 col-form-label">掲載日</label>
+                            <div class="col-sm-6">
+                                <input type="text" id="calendarTEST" class="form-control" name="startday" value="{{ $item->startday }}">
+                            </div>
+                        </div><br>
                         <button type="submit" class="btn btn-primary ml-3">更新</button>
                     </form>
                 </div>

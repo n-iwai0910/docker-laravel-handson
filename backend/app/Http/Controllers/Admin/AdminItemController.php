@@ -25,6 +25,7 @@ class AdminItemController extends Controller
 	public function index()
 	{
         $items = Item::all();
+        
         return view('admin/item', ['items' => $items]);
     }
 
@@ -63,7 +64,9 @@ class AdminItemController extends Controller
                 "size_x" => $request->post("size_x"),
                 "size_y" => $request->post("size_y"),
                 "size_z" => $request->post("size_z"),
-                "weight" => $request->post("weight")
+                "weight" => $request->post("weight"),
+                "startday" => $request->post("startday"),
+                "endday" => $request->post("endday"),
     		]);
 
             foreach ($request->file('files') as $index=> $e) {
@@ -94,6 +97,8 @@ class AdminItemController extends Controller
         $Item->size_y = $request->post("size_y");
         $Item->size_z = $request->post("size_z");
         $Item->weight = $request->post("weight");
+        $Item->startday = $request->post("startday");
+        $Item->endday = $request->post("endday");
 
         $Item->save();
         return redirect('admin/item')->with('flash_message', '商品情報を更新しました');

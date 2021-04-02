@@ -3,6 +3,9 @@ import 'slick-carousel';
 import slick from 'slick-carousel';
 import 'slick-carousel/slick/slick.css'; // 追加
 import 'slick-carousel/slick/slick-theme.css'; // 追加
+import Quill from 'quill';
+const container = $('.editor').get(0);
+const editor = new Quill(container);
 
 $('#image').on('change', function (e) {
     var reader = new FileReader();
@@ -125,3 +128,30 @@ dropZone.addEventListener('drop', function(e) {
     fileInput.files = files; //inputのvalueをドラッグしたファイルに置き換える。
     previewFile(files[0]);
 }, false);
+
+Quill.prototype.getHtml = function() {
+    return this.container.querySelector('.ql-editor').innerHTML
+}
+
+$(document).ready(() => {
+        $('.js-quill-editor').each((index, e) => {
+            const $target  = $($(e).data('target'))
+            const editor = new Quill(e, {
+                modules: {
+                    // 今回toolbarは、hタグと'bold', 'italic', 'underline'のスタイルのみ用意
+                    toolbar: [
+                        [{ header: [1, 2, false] }],
+                        ['bold', 'italic', 'underline'],
+                    ]
+                },
+                theme: 'snow'
+            });
+            editor.on('text-change', (delta) => {
+                if (delta) {
+                    // Quillエディタ内のHTMLをformに設定する
+                    const html = editor.getHtml();
+                    $target.val(html)
+                }
+            })
+        })
+});
